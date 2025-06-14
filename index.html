@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Plan: The Inaugural Denton Labor Day Half Marathon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!--
+    Chosen Palette: Warm Neutrals (Stone, Amber) with Teal accent.
+    Application Structure Plan: A single-page application with a sticky top navigation bar for smooth scrolling to dedicated sections. This structure provides an intuitive, linear overview while allowing non-linear exploration. Key sections include an interactive timeline (Gantt chart), a stakeholder map, a clear breakdown of deliverables, and a visual representation of the project methodology. This dashboard-style layout was chosen to distill the dense project plan into digestible, interactive components, making it easy for any stakeholder to quickly grasp the project's scope and status.
+    Visualization & Content Choices:
+    - Report Info: Project Timeline -> Goal: Show Change/Process -> Viz/Method: Interactive Gantt Chart -> Interaction: Hover tooltips -> Justification: Visually represents the project's duration and phase-based nature more effectively than text. Library: Chart.js.
+    - Report Info: Stakeholders -> Goal: Organize/Inform -> Viz/Method: Thematic Cards with Icons -> Interaction: Hover effects -> Justification: Clearly segments the diverse groups involved for easy comprehension. Library: HTML/Tailwind.
+    - Report Info: Scope (In/Out) -> Goal: Compare/Inform -> Viz/Method: Two-column checklist layout -> Interaction: None -> Justification: Direct side-by-side comparison makes project boundaries unambiguous. Library: HTML/Tailwind.
+    - Report Info: Methodology -> Goal: Organize/Inform -> Viz/Method: Visual Flowchart -> Interaction: Hover effects -> Justification: Illustrates the sequential steps of the Waterfall process clearly. Library: HTML/Tailwind.
+    CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f4; /* stone-100 */
+        }
+        .chart-container {
+            position: relative;
+            height: 50vh;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            max-height: 500px;
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="text-stone-800">
+
+    <header class="bg-stone-100/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold text-teal-700">Denton Half Marathon</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#overview" class="nav-link text-stone-600 hover:text-teal-600">Overview</a>
+                    <a href="#timeline" class="nav-link text-stone-600 hover:text-teal-600">Timeline</a>
+                    <a href="#stakeholders" class="nav-link text-stone-600 hover:text-teal-600">Stakeholders</a>
+                    <a href="#scope" class="nav-link text-stone-600 hover:text-teal-600">Scope</a>
+                    <a href="#process" class="nav-link text-stone-600 hover:text-teal-600">Process</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="overview" class="py-20 bg-amber-50 fade-in-section">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-teal-800">The Inaugural Denton Labor Day Half Marathon</h1>
+                <p class="mt-4 text-lg text-stone-700 max-w-3xl mx-auto">An interactive dashboard for the complete project plan. This application breaks down the project's core components—its goals, timeline, stakeholders, and processes—into a clear, explorable format.</p>
+            </div>
+        </section>
+
+        <section id="timeline" class="py-16 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-2">Project Timeline</h2>
+                <p class="text-center text-stone-600 mb-8 max-w-2xl mx-auto">The project spans 14 months, from initial planning to final closeout. The Gantt chart below visualizes the five key phases and their durations, illustrating our structured, sequential approach to project management.</p>
+                <div class="chart-container">
+                    <canvas id="ganttChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="stakeholders" class="py-16 bg-stone-200 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-2">Stakeholder Ecosystem</h2>
+                <p class="text-center text-stone-600 mb-12 max-w-2xl mx-auto">A successful event relies on a diverse network of partners and clients. This section outlines the key groups involved, from the primary client overseeing the project to the community members who bring it to life.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <h3 class="font-bold text-teal-700 text-lg mb-2">Primary Client</h3>
+                        <p class="text-sm">The City of Denton Parks and Recreation Department, who will oversee the project and measure its success against community goals.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <h3 class="font-bold text-teal-700 text-lg mb-2">Participants & Community</h3>
+                        <p class="text-sm">The runners who are our primary customers, and the Denton residents and businesses who provide support and create the event's atmosphere.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <h3 class="font-bold text-teal-700 text-lg mb-2">City Departments & EMS</h3>
+                        <p class="text-sm">Essential municipal partners including Police, Public Works, and Emergency Medical Services who ensure a safe and orderly event.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                        <h3 class="font-bold text-teal-700 text-lg mb-2">Partners & Volunteers</h3>
+                        <p class="text-sm">Local sponsors, a designated charity partner, and the many volunteers from universities and the community who make the race possible.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="scope" class="py-16 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-2">Project Scope & Deliverables</h2>
+                <p class="text-center text-stone-600 mb-12 max-w-2xl mx-auto">To ensure project success and prevent scope creep, we have clearly defined what is included and what is excluded. The key is to focus on delivering a high-quality inaugural half marathon.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-green-500 shadow-sm">
+                        <h3 class="text-2xl font-semibold mb-4 text-green-700">In Scope</h3>
+                        <ul class="space-y-3 text-stone-700">
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> A certified 13.1-mile race route.</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> Full project plan (WBS, budget, schedule).</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> All necessary permits and insurance.</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> Event website with online registration.</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> Marketing, volunteer, and logistics plans.</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> Participant materials (bibs, shirts, medals).</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> A successfully executed race day.</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> A formal project closure report.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-red-500 shadow-sm">
+                        <h3 class="text-2xl font-semibold mb-4 text-red-700">Out of Scope</h3>
+                        <ul class="space-y-3 text-stone-700">
+                            <li class="flex items-start"><span class="text-red-500 mr-2">✖</span> Organization of other race distances (5k, 10k).</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">✖</span> A large-scale post-race music festival.</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">✖</span> Multi-year sponsorship agreements.</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">✖</span> Direct management of charity fundraising.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="py-16 bg-stone-200 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-2">Our Process</h2>
+                <p class="text-center text-stone-600 mb-12 max-w-2xl mx-auto">We follow the Waterfall methodology, guided by the five core processes of Project Scope Management. This ensures a structured, transparent, and controlled approach from start to finish.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0">
+                    <div class="process-step">Plan Scope</div>
+                    <div class="process-arrow">➔</div>
+                    <div class="process-step">Define Scope</div>
+                    <div class="process-arrow">➔</div>
+                    <div class="process-step">Create WBS</div>
+                    <div class="process-arrow">➔</div>
+                    <div class="process-step">Validate Scope</div>
+                    <div class="process-arrow">➔</div>
+                    <div class="process-step">Control Scope</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>Denton Labor Day Half Marathon | Project Plan Dashboard</p>
+            <p class="text-sm text-stone-400 mt-2">A conceptual application for project visualization.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const ganttCtx = document.getElementById('ganttChart').getContext('2d');
+            const ganttChart = new Chart(ganttCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Phase 1: Initiation & Planning',
+                        'Phase 2: Design & Vendor Selection',
+                        'Phase 3: Execution & Promotion',
+                        'Phase 4: Race Day Execution',
+                        'Phase 5: Project Closeout'
+                    ],
+                    datasets: [{
+                        label: 'Project Phases',
+                        data: [
+                            {x: ['2024-07-01', '2024-09-30'], y: 'Phase 1: Initiation & Planning'},
+                            {x: ['2024-10-01', '2025-01-31'], y: 'Phase 2: Design & Vendor Selection'},
+                            {x: ['2025-02-01', '2025-08-31'], y: 'Phase 3: Execution & Promotion'},
+                            {x: ['2025-09-01', '2025-09-01'], y: 'Phase 4: Race Day Execution'},
+                            {x: ['2025-09-02', '2025-10-31'], y: 'Phase 5: Project Closeout'}
+                        ],
+                        backgroundColor: [
+                            'rgba(13, 110, 115, 0.7)',
+                            'rgba(20, 164, 172, 0.7)',
+                            'rgba(26, 218, 229, 0.7)',
+                            'rgba(245, 158, 11, 0.7)',
+                            'rgba(120, 113, 108, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(13, 110, 115, 1)',
+                            'rgba(20, 164, 172, 1)',
+                            'rgba(26, 218, 229, 1)',
+                            'rgba(245, 158, 11, 1)',
+                            'rgba(120, 113, 108, 1)'
+                        ],
+                        borderWidth: 1,
+                        barPercentage: 0.6,
+                        categoryPercentage: 0.8,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'month'
+                            },
+                            min: '2024-06-01',
+                            max: '2025-11-30',
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                           ticks: {
+                                autoSkip: false,
+                                callback: function(value, index, values) {
+                                    const label = this.getLabelForValue(value);
+                                    if (label.length > 25) {
+                                        return label.slice(0, 25) + '...';
+                                    }
+                                    return label;
+                                }
+                           }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(context) {
+                                    return context[0].dataset.data[context[0].dataIndex].y;
+                                },
+                                label: function(context) {
+                                    const start = new Date(context.raw.x[0]).toLocaleDateString();
+                                    const end = new Date(context.raw.x[1]).toLocaleDateString();
+                                    return `Duration: ${start} - ${end}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const faders = document.querySelectorAll('.fade-in-section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            faders.forEach(fader => {
+                observer.observe(fader);
+            });
+
+            const processSteps = document.querySelectorAll('.process-step');
+            const processArrows = document.querySelectorAll('.process-arrow');
+            
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            teal: {
+                                700: '#0d6e73',
+                                800: '#0a5659',
+                            },
+                            stone: {
+                                100: '#f5f5f4',
+                                200: '#e7e5e4',
+                                600: '#57534e',
+                                700: '#44403c',
+                                800: '#292524',
+                            },
+                            amber: {
+                                50: '#fffbeb',
+                            }
+                        }
+                    }
+                }
+            }
+
+            function applyProcessStyles() {
+              const styles = {
+                step: 'bg-white p-4 rounded-lg shadow-md text-center font-semibold text-stone-700 w-full md:w-48 transition-transform transform hover:scale-105',
+                arrow: 'text-2xl font-bold text-teal-600 px-2 hidden md:block'
+              };
+              processSteps.forEach(el => el.className = styles.step);
+              processArrows.forEach(el => el.className = styles.arrow);
+            }
+            applyProcessStyles();
+
+        });
+    </script>
+</body>
+</html>
